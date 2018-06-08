@@ -49,7 +49,7 @@ defmodule BeamInspect do
   """
   @spec to_core_erlang(module(), atom() | [atom()]) :: charlist() | no_return()
   def to_core_erlang(module, opts \\ []) when is_atom(module) do
-    {format_opts, erlc_flags} = opts |> List.wrap() |> Enum.split_with(&(&1 in @format_opts))
+    {format_opts, erlc_flags} = opts |> List.wrap() |> split_opts(&(&1 in @format_opts))
 
     module
     |> abstract_code()
@@ -82,5 +82,11 @@ defmodule BeamInspect do
     {:ok, _, core} = :compile.noenv_forms(abstract_code, [:to_core | erlc_flags])
 
     :cerl_prettypr.format(core, noann: noann)
+  end
+
+  if Version.match?(System.version(), "< 1.4.0") do
+    defp split_opts(opts, fun), do: Enum.partition(opts, fun)
+  else
+    defp split_opts(opts, fun), do: Enum.split_with(opts, fun)
   end
 end
