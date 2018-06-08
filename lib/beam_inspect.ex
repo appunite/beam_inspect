@@ -68,6 +68,9 @@ defmodule BeamInspect do
          {:error, :beam_lib, _} <- :beam_lib.chunks(file, [:abstract_code]) do
       raise "Abstract code unavailable"
     else
+      {:ok, {BeamInspect, [debug_info: {:debug_info_v1, _backend, :none}]}} ->
+        raise "Abstract code unavailable"
+
       {:ok, {^module, [{:debug_info, {:debug_info_v1, backend, metadata}}]}} ->
         {:ok, abstract_code} = backend.debug_info(:erlang_v1, module, metadata, [])
         abstract_code
