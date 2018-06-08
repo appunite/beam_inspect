@@ -16,7 +16,7 @@ end
 
 ## Usage
 
-#### Example elixir module:
+#### Example elixir module
 
 ```elixir
 defmodule Foo do
@@ -62,7 +62,7 @@ iex(1)> Foo |> BeamInspect.to_erlang() |> IO.puts()
 #### See erlang abstract code compiled with `to_core` flag
 
 ```elixir
-iex(1)> Foo |> BeamInspect.to_core_erlang() |> IO.puts()
+iex(1)> Foo |> BeamInspect.to_core_erlang(:noann) |> IO.puts()
 # module 'Elixir.Foo' ['__info__'/1, 'baz'/0,
 #                      'module_info'/0, 'module_info'/1]
 #   attributes [% Line 1
@@ -98,102 +98,37 @@ iex(1)> Foo |> BeamInspect.to_core_erlang() |> IO.puts()
 #                                {'type', 1, 'byte', []},
 #                                {'type', 1, 'integer', []}]}]}]}]}]}]}]]
 #   '__info__'/1 =
-#       (fun ((_@c0 -| [{'file', "lib/foo.ex"}])) ->
-#            (case (_@c0 -| [{'file', "lib/foo.ex"}]) of
-#               (('module' -| [{'file', "lib/foo.ex"}])
-#                  when 'true' ->
-#                    ('Elixir.Foo' -| [{'file', "lib/foo.ex"}])
-#                 -| [{'file', "lib/foo.ex"}])
-#               (('functions' -| [{'file', "lib/foo.ex"}])
-#                  when 'true' ->
-#                    ([{'baz', 0}] -| [{'file', "lib/foo.ex"}])
-#                 -| [{'file', "lib/foo.ex"}])
-#               (('macros' -| [{'file', "lib/foo.ex"}])
-#                  when 'true' ->
-#                    ([] -| [{'file', "lib/foo.ex"}])
-#                 -| [{'file', "lib/foo.ex"}])
-#               (('attributes' -| [{'file', "lib/foo.ex"}])
-#                  when 'true' ->
-#                    (call ('erlang' -| [{'file',
-#                                         "lib/foo.ex"}]):('get_module_info'
-#                                                           -| [{'file',
-#                                                                "lib/foo.ex"}])(('Elixir.Foo'
-#                                                                                  -| [{'file',
-#                                                                                       "lib/foo.ex"}]),
-#                                                                                ('attributes'
-#                                                                                  -| [{'file',
-#                                                                                       "lib/foo.ex"}]))
-#                      -| [{'file', "lib/foo.ex"}])
-#                 -| [{'file', "lib/foo.ex"}])
-#               (('compile' -| [{'file', "lib/foo.ex"}])
-#                  when 'true' ->
-#                    (call ('erlang' -| [{'file',
-#                                         "lib/foo.ex"}]):('get_module_info'
-#                                                           -| [{'file',
-#                                                                "lib/foo.ex"}])(('Elixir.Foo'
-#                                                                                  -| [{'file',
-#                                                                                       "lib/foo.ex"}]),
-#                                                                                ('compile'
-#                                                                                  -| [{'file',
-#                                                                                       "lib/foo.ex"}]))
-#                      -| [{'file', "lib/foo.ex"}])
-#                 -| [{'file', "lib/foo.ex"}])
-#               (('md5' -| [{'file', "lib/foo.ex"}])
-#                  when 'true' ->
-#                    (call ('erlang' -| [{'file',
-#                                         "lib/foo.ex"}]):('get_module_info'
-#                                                           -| [{'file',
-#                                                                "lib/foo.ex"}])(('Elixir.Foo'
-#                                                                                  -| [{'file',
-#                                                                                       "lib/foo.ex"}]),
-#                                                                                ('md5'
-#                                                                                  -| [{'file',
-#                                                                                       "lib/foo.ex"}]))
-#                      -| [{'file', "lib/foo.ex"}])
-#                 -| [{'file', "lib/foo.ex"}])
-#               (('deprecated' -| [{'file', "lib/foo.ex"}])
-#                  when 'true' ->
-#                    ([] -| [{'file', "lib/foo.ex"}])
-#                 -| [{'file', "lib/foo.ex"}])
-#               (_@c1 when 'true' ->
-#                    (primop 'match_fail'(({'function_clause',
-#                                           _@c1}
-#                                           -| [{'file', "lib/foo.ex"}]))
-#                      -| [{'function_name', {'__info__', 1}},
-#                          {'file', "lib/foo.ex"}])
-#                 -| ['compiler_generated'])
-#             end
-#              -| [{'file', "lib/foo.ex"}])
-#         -| [{'file', "lib/foo.ex"}])
+#       fun (_@c0) ->
+#           case _@c0 of
+#             'module' when 'true' -> 'Elixir.Foo'
+#             'functions' when 'true' -> [{'baz', 0}]
+#             'macros' when 'true' -> []
+#             'attributes' when 'true' ->
+#                 call 'erlang':'get_module_info'('Elixir.Foo',
+#                                                 'attributes')
+#             'compile' when 'true' ->
+#                 call 'erlang':'get_module_info'('Elixir.Foo',
+#                                                 'compile')
+#             'md5' when 'true' ->
+#                 call 'erlang':'get_module_info'('Elixir.Foo',
+#                                                 'md5')
+#             'deprecated' when 'true' -> []
+#             _@c1 when 'true' ->
+#                 primop 'match_fail'({'function_clause',
+#                                      _@c1})
+#           end
 #   'baz'/0 =
 #       % Line 2
-#       (fun () ->
-#            % Line 3
-#            ('false' -| [{'file', "lib/foo.ex"}])
-#         -| [{'file', "lib/foo.ex"}])
+#       fun () ->
+#           % Line 3
+#           'false'
 #   'module_info'/0 =
-#       (fun () ->
-#            (call ('erlang' -| [{'file',
-#                                 "lib/foo.ex"}]):('get_module_info'
-#                                                   -| [{'file',
-#                                                        "lib/foo.ex"}])(('Elixir.Foo'
-#                                                                          -| [{'file',
-#                                                                               "lib/foo.ex"}]))
-#              -| [{'file', "lib/foo.ex"}])
-#         -| [{'file', "lib/foo.ex"}])
+#       fun () ->
+#           call 'erlang':'get_module_info'('Elixir.Foo')
 #   'module_info'/1 =
-#       (fun ((_@c0 -| [{'file', "lib/foo.ex"}])) ->
-#            (call ('erlang' -| [{'file',
-#                                 "lib/foo.ex"}]):('get_module_info'
-#                                                   -| [{'file',
-#                                                        "lib/foo.ex"}])(('Elixir.Foo'
-#                                                                          -| [{'file',
-#                                                                               "lib/foo.ex"}]),
-#                                                                        (_@c0
-#                                                                          -| [{'file',
-#                                                                               "lib/foo.ex"}]))
-#              -| [{'file', "lib/foo.ex"}])
-#         -| [{'file', "lib/foo.ex"}])
+#       fun (_@c0) ->
+#           call 'erlang':'get_module_info'('Elixir.Foo',
+#                                           _@c0)
 # end
 :ok
 ```
