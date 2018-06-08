@@ -2,8 +2,16 @@ defmodule BeamInspectTest do
   use ExUnit.Case
   import ExUnit.CaptureIO
 
-  test "to_erlang/1" do
-    assert BeamInspect.to_erlang(GenServer) |> to_string() =~ "-module('Elixir.GenServer')"
+  describe "to_erlang/1" do
+    test "with debug info present" do
+      assert BeamInspect.to_erlang(GenServer) |> to_string() =~ "-module('Elixir.GenServer')"
+    end
+
+    test "without debug info present" do
+      assert_raise(RuntimeError, "abstract code unavailable", fn ->
+        BeamInspect.to_erlang(NoDebugInfo)
+      end)
+    end
   end
 
   describe "to_core_erlang/2" do
@@ -28,6 +36,12 @@ defmodule BeamInspectTest do
                refute BeamInspect.to_core_erlang(GenServer, [:noann, :time]) |> to_string() =~
                         "-| [{'file', \"lib/gen_server.ex\"}]"
              end) =~ "sys_core_fold"
+    end
+
+    test "without debug info present" do
+      assert_raise(RuntimeError, "abstract code unavailable", fn ->
+        BeamInspect.to_core_erlang(NoDebugInfo)
+      end)
     end
   end
 end

@@ -7,7 +7,7 @@ defmodule BeamInspect do
   Returns erlang code.
 
   Abstract erlang code is fetched from .beam file.
-  It requires `:debug_info` or `:abstract_code` chunk to be present in .beam file.
+  It requires `:debug_info` or `:abstract_code` to be available in compiled module.
 
   ## Example
 
@@ -28,7 +28,7 @@ defmodule BeamInspect do
   Returns core erlang code.
 
   Abstract erlang code is fetched from .beam file.
-  It requires `:debug_info` or `:abstract_code` chunk to be present in .beam file.
+  It requires `:debug_info` or `:abstract_code` to be available in compiled module.
   Erlang abstract code is compiled with `+to_core` flag by `:compile.noenv_forms/2` function.
 
   ## Options
@@ -66,10 +66,10 @@ defmodule BeamInspect do
 
     with {:error, :beam_lib, _} <- :beam_lib.chunks(file, [:debug_info]),
          {:error, :beam_lib, _} <- :beam_lib.chunks(file, [:abstract_code]) do
-      raise "Abstract code unavailable"
+      raise "abstract code unavailable"
     else
-      {:ok, {BeamInspect, [debug_info: {:debug_info_v1, _backend, :none}]}} ->
-        raise "Abstract code unavailable"
+      {:ok, {^module, [debug_info: {:debug_info_v1, _backend, :none}]}} ->
+        raise "abstract code unavailable"
 
       {:ok, {^module, [{:debug_info, {:debug_info_v1, backend, metadata}}]}} ->
         {:ok, abstract_code} = backend.debug_info(:erlang_v1, module, metadata, [])
