@@ -84,6 +84,7 @@ defmodule BeamInspect do
     :cerl_prettypr.format(core, noann: noann)
   end
 
+  @compile {:inline, split_opts: 2}
   if Version.match?(System.version(), "< 1.4.0") do
     defp split_opts(opts, fun), do: Enum.partition(opts, fun)
   else
