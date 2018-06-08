@@ -7,7 +7,7 @@ defmodule BeamInspect.MixProject do
     [
       app: :beam_inspect,
       deps: deps(),
-      description: "Inspect how your elixir module looks like in erlang / core erlang.",
+      description: "Inspect how your elixir module looks like in erlang / core erlang",
       elixir: "~> 1.3",
       elixirc_paths: elixirc_paths(Mix.env()),
       package: package(),
