@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/amatalai/beam_inspect.svg?branch=master)](https://travis-ci.org/amatalai/beam_inspect)
+[![Build Status](https://travis-ci.org/appunite/beam_inspect.svg?branch=master)](https://travis-ci.org/appunite/beam_inspect)
 
 # BeamInspect
 
@@ -11,7 +11,7 @@ The package can be installed by adding it to your list of dependencies in `mix.e
 ```elixir
 def deps do
   [
-    {:beam_inspect, github: "amatalai/beam_inspect", only: [:dev], runtime: false}
+    {:beam_inspect, github: "appunite/beam_inspect", only: [:dev], runtime: false}
   ]
 end
 ```
