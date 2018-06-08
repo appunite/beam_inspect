@@ -11,7 +11,7 @@ The package can be installed by adding it to your list of dependencies in `mix.e
 ```elixir
 def deps do
   [
-    {:beam_inspect, github: "appunite/beam_inspect", only: [:dev], runtime: false}
+    {:beam_inspect, "~> 0.1.0", only: [:dev], runtime: false}
   ]
 end
 ```
