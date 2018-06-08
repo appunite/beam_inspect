@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/amatalai/beam_inspect.svg?branch=master)](https://travis-ci.org/amatalai/beam_inspect)
+
 # BeamInspect
 
 See how your elixir module looks like in erlang/core erlang.
