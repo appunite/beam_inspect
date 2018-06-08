@@ -18,6 +18,8 @@ defmodule BeamInspect.MixProject do
   end
 
   defp deps do
-    []
+    [
+      {:ex_doc, "~> 0.13", only: :dev, runtime: false}
+    ]
   end
 end
