@@ -6,12 +6,13 @@ defmodule BeamInspect.MixProject do
   def project do
     [
       app: :beam_inspect,
-      version: @version,
-      elixir: "~> 1.3",
-      start_permanent: Mix.env() == :prod,
       deps: deps(),
+      description: "Inspect how your elixir module looks like in erlang / core erlang.",
+      elixir: "~> 1.3",
       elixirc_paths: elixirc_paths(Mix.env()),
-      package: package()
+      package: package(),
+      start_permanent: Mix.env() == :prod,
+      version: @version
     ]
   end
 
