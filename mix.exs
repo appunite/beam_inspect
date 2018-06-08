@@ -34,7 +34,6 @@ defmodule BeamInspect.MixProject do
 
   defp package do
     [
-      name: :beam_inspect,
       maintainers: ["Tobiasz Małecki"],
       licenses: ["MIT"],
       links: %{
