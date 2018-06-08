@@ -1,12 +1,13 @@
 defmodule BeamInspect do
   @moduledoc """
-  See how your elixir module looks like in erlang/core erlang.
-
-  It requires `:debug_info` or `:abstract_code` in .beam file.
+  Inspect how your elixir module looks like in erlang / core erlang.
   """
 
   @doc """
-  Returns erlang abstract code
+  Returns erlang code.
+
+  Abstract erlang code is fetched from .beam file.
+  It requires `:debug_info` or `:abstract_code` chunk to be present in .beam file.
 
   ## Example
 
@@ -24,11 +25,15 @@ defmodule BeamInspect do
   @format_opts [:noann]
 
   @doc """
-  Returns core erlang code (erlang abstract code compiled with `+to_core` flag)
+  Returns core erlang code.
+
+  Abstract erlang code is fetched from .beam file.
+  It requires `:debug_info` or `:abstract_code` chunk to be present in .beam file.
+  Erlang abstract code is compiled with `+to_core` flag by `:compile.noenv_forms/2` function.
 
   ## Options
 
-    * erlc flags - e.g. +time should be passed as `:time` atom
+    * erlc flags - e.g. erlc +time should be passed as `:time` atom
 
     * `:noann` - removes compiler annotations
 

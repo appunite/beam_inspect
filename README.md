@@ -2,7 +2,7 @@
 
 # BeamInspect
 
-See how your elixir module looks like in erlang/core erlang.
+Inspect how your elixir module looks like in erlang / core erlang.
 
 ## Installation
 
@@ -28,7 +28,7 @@ defmodule Foo do
 end
 ```
 
-#### See erlang abstract code
+#### Inspect erlang
 
 ```elixir
 iex(1)> Foo |> BeamInspect.to_erlang() |> IO.puts()
@@ -61,7 +61,7 @@ iex(1)> Foo |> BeamInspect.to_erlang() |> IO.puts()
 :ok
 ```
 
-#### See erlang abstract code compiled with `to_core` flag
+#### Inspect core erlang
 
 ```elixir
 iex(1)> Foo |> BeamInspect.to_core_erlang(:noann) |> IO.puts()
