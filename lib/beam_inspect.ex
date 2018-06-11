@@ -65,7 +65,7 @@ defmodule BeamInspect do
     file = :code.which(module)
 
     case :beam_lib.chunks(file, [:debug_info]) do
-      {:ok, {^module, [{:debug_info, {:debug_info_v1, backend, %{} = metadata}}]}} ->
+      {:ok, {^module, [{:debug_info, {:debug_info_v1, backend, {_, _, _} = metadata}}]}} ->
         {:ok, abstract_code} = backend.debug_info(:erlang_v1, module, metadata, [])
         abstract_code
 
