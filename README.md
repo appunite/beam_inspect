@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/appunite/beam_inspect.svg?branch=master)](https://travis-ci.org/appunite/beam_inspect)
+[![codecov](https://codecov.io/gh/appunite/beam_inspect/branch/master/graph/badge.svg)](https://codecov.io/gh/appunite/beam_inspect)
 
 # BeamInspect
 
