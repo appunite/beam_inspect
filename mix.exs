@@ -16,6 +16,7 @@ defmodule BeamInspect.MixProject do
         "coveralls.detail": :test,
         "coveralls.json": :test
       ],
+      source_url: "https://github.com/appunite/beam_inspect",
       start_permanent: Mix.env() == :prod,
       test_coverage: [tool: ExCoveralls],
       version: @version
