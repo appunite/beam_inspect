@@ -11,7 +11,13 @@ defmodule BeamInspect.MixProject do
       elixir: "~> 1.3",
       elixirc_paths: elixirc_paths(Mix.env()),
       package: package(),
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.json": :test
+      ],
       start_permanent: Mix.env() == :prod,
+      test_coverage: [tool: ExCoveralls],
       version: @version
     ]
   end
@@ -24,6 +30,7 @@ defmodule BeamInspect.MixProject do
 
   defp deps do
     [
+      {:excoveralls, "~> 0.8.0", only: :test, runtime: false},
       {:ex_doc, "~> 0.13", only: :dev, runtime: false}
     ]
   end

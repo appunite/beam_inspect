@@ -20,3 +20,7 @@ matrix:
     otp_release: 20.0
     install: skip
     script: mix format --check-formatted --dry-run
+
+script: mix coveralls.json
+after_script:
+  - bash <(curl -s https://codecov.io/bash)
