@@ -1,6 +1,6 @@
 # BeamInspect
 
-[![Build Status](https://github.com/appunite/beam_inspect/workflows/CI/badge.svg?branch=master)](https://github.com/appunite/beam_inspect/actions) [![Hex.pm](https://img.shields.io/hexpm/v/beam_inspect.svg?style=flat&colorB=6B4D90)](https://hex.pm/packages/beam_inspect)
+[![Build Status](https://github.com/appunite/beam_inspect/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/appunite/beam_inspect/actions) [![Hex.pm](https://img.shields.io/hexpm/v/beam_inspect.svg?style=flat&colorB=6B4D90)](https://hex.pm/packages/beam_inspect)
 
 Inspect how your elixir module looks like in erlang / core erlang.
 
